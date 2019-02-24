@@ -32,8 +32,27 @@ public class Deck {
      * @param suits is an array containing all of the card suits.
      * @param values is an array containing all of the card point values.
      */
-    public Deck(String[] ranks, String[] suits, int[] values) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+    public Deck(String[] ranks, String[] suits, int[] values)
+    {
+		//List<Card> deck= new ArrayList<Card>();
+		int i=0;
+		int j=0;
+		int k=0;
+		while(i<ranks.length)
+        {
+            while(j<suits.length)
+            {
+             //Card specified= new Card(ranks[i], suits[j], values[i]);
+             cards.set(k,new Card(ranks[i], suits[j], values[i]));
+             k=k+1;
+             j=j+1;
+            }
+            i++;
+            j=0;
+        }
+        //deck.shuffle();
+
+
     }
 
 
@@ -42,7 +61,14 @@ public class Deck {
      * @return true if this deck is empty, false otherwise.
      */
     public boolean isEmpty() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		if (cards.size()==0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     /**
