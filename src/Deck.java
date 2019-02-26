@@ -15,6 +15,7 @@ public class Deck {
      * cards contains all the cards in the deck.
      */
     private List<Card> cards;
+    private List<Card> discard;
 
     /**
      * size is the number of not-yet-dealt cards.
@@ -34,23 +35,15 @@ public class Deck {
      */
     public Deck(String[] ranks, String[] suits, int[] values)
     {
-		//List<Card> deck= new ArrayList<Card>();
-		int i=0;
-		int j=0;
-		int k=0;
-		while(i<ranks.length)
+        cards= new ArrayList<Card>();
+        for (int i=0; i<suits.length; i++)
         {
-            while(j<suits.length)
+            for(int j=0; j<ranks.length; j++)
             {
-             //Card specified= new Card(ranks[i], suits[j], values[i]);
-             cards.set(k,new Card(ranks[i], suits[j], values[i]));
-             k=k+1;
-             j=j+1;
+                Card temp= new Card(ranks[j], suits[i], values[j]);
+                cards.add(temp);
             }
-            i++;
-            j=0;
         }
-        //deck.shuffle();
 
 
     }
@@ -75,14 +68,7 @@ public class Deck {
      * Accesses the number of undealt cards in this deck.
      * @return the number of undealt cards in this deck.
      */
-    public int size() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-    }
 
-    /**
-     * Randomly permute the given collection of cards
-     * and reset the size to represent the entire deck.
-     */
     public void shuffle() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
     }
@@ -93,12 +79,32 @@ public class Deck {
      *         previously dealt.
      */
     public Card deal() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+        if (cards.size() > 0){
+            Card temp = cards.remove(cards.size()-1);
+            discard.add (temp);
+            return temp;
+
+        }
+        else {
+            return null;
+        }
+
+
     }
 
     /**
      * Generates and returns a string representation of this deck.
      * @return a string representation of this deck.
+     */
+
+    public int size() {
+
+       return cards.size();
+    }
+
+    /**
+     * Randomly permute the given collection of cards
+     * and reset the size to represent the entire deck.
      */
     @Override
     public String toString() {
